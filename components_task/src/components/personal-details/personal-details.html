@@ -1,0 +1,21 @@
+  <div class="table-container">
+    <h1>{{ title }} <u> {{ first_name}} {{last_name}} </u></h1>
+    <table>
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" [(ngModel)]="first_name" /></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" [(ngModel)]="last_name" /></td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td><input type="number" [(ngModel)]="age" /></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><input type="text" [(ngModel)]="gender" /></td>
+      </tr>
+    </table>
+  </div>
