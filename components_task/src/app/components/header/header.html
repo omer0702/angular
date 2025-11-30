@@ -1,0 +1,9 @@
+<header class="header">
+  <div class="brand">Library Manager</div>
+  <nav>
+    <a routerLink="/books" routerLinkActive="active">Books</a>
+    <a routerLink="/users" routerLinkActive="active">Users</a>
+    <a routerLink="/login" *ngIf="!(auth.currentUser)">Login</a>
+    <button *ngIf="auth.currentUser" (click)="logout()">Logout ({{auth.currentUser?.name}})</button>
+  </nav>
+</header>

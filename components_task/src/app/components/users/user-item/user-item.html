@@ -1,0 +1,10 @@
+<div class="user-card" [ngClass]="{'admin': user.role === 'admin'}">
+  <div class="left">
+    <strong>{{ user.name }}</strong><br/>
+    <small>{{ user.email }}</small>
+  </div>
+  <div class="right">
+    <button (click)="edit()">ערוך</button>
+    <button (click)="remove()">מחק</button>
+  </div>
+</div>

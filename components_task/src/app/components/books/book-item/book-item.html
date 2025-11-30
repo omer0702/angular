@@ -1,0 +1,11 @@
+<div class="book-card" [ngClass]="{'unavailable': !book.available}">
+  <div>
+    <strong>{{ book.title }}</strong> — {{ book.author }}
+    <div class="meta">({{ book.year }}) • {{ book.category }}</div>
+  </div>
+  <div class="actions">
+    <button (click)="edit()">ערוך</button>
+    <button (click)="toggleAvail()">{{ book.available ? 'סמן כלא זמין' : 'סמן כזמין' }}</button>
+    <button (click)="remove()">מחק</button>
+  </div>
+</div>

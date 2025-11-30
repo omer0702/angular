@@ -1,0 +1,10 @@
+<h2>Users</h2>
+<div class="actions">
+  <a routerLink="/users/add">הוספת משתמש</a>
+  <input placeholder="חפש משתמש" [(ngModel)]="searchTerm"/>
+</div>
+<ul>
+  <li *ngFor="let user of users | search:searchTerm:['name','email']">
+    <app-user-item [user]="user" (delete)="deleteUser($event)"></app-user-item>
+  </li>
+</ul>

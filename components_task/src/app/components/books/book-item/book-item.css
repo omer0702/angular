@@ -1,0 +1,4 @@
+.book-card { display:flex; justify-content:space-between; padding:10px; border:1px solid #ddd; border-radius:6px; }
+.book-card.unavailable { opacity:0.6; background:#fff7f7; }
+.actions button { margin-left:8px; }
+.meta { font-size:0.85em; color:#666; }

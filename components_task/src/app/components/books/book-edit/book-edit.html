@@ -1,0 +1,30 @@
+<h2>{{ isEdit ? 'עריכת ספר' : 'הוספת ספר' }}</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <label>כותרת:
+    <input formControlName="title"/>
+  </label>
+  <div *ngIf="form.controls.title.touched && form.controls.title.invalid" class="error">כותרת חובה</div>
+
+  <label>מחבר:
+    <input formControlName="author"/>
+  </label>
+  <div *ngIf="form.controls.author.touched && form.controls.author.invalid" class="error">מחבר חובה</div>
+
+  <label>שנה:
+    <input type="number" formControlName="year"/>
+  </label>
+
+  <label>קטגוריה:
+    <select formControlName="category">
+      <option>Programming</option>
+      <option>Fiction</option>
+      <option>Math</option>
+      <option>History</option>
+    </select>
+  </label>
+
+  <label><input type="checkbox" formControlName="available"/> זמין</label>
+
+  <button type="submit" [disabled]="form.invalid">שמור</button>
+  <a routerLink="/books">ביטול</a>
+</form>

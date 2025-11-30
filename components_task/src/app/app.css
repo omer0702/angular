@@ -1,6 +1,5 @@
-h1{
-    text-align: center;
-    background: rgb(133, 177, 213);
-    color: rgb(60, 114, 240);
-    font-size: 3.5rem;
+.container {
+  padding: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
 }

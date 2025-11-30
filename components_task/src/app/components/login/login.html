@@ -1,0 +1,12 @@
+<h2>Login</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>אימייל:
+    <input formControlName="email" placeholder="admin@example.com"/>
+  </label>
+  <div *ngIf="form.controls.email.invalid && form.controls.email.touched" class="error">
+    שגיאה: מוסר אימייל תקין.
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">התחבר</button>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</form>

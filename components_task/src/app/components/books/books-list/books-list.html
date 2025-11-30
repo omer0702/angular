@@ -1,0 +1,18 @@
+<h2>Books</h2>
+
+<div class="toolbar">
+<a routerLink="/books/edit/new" class="add-btn">הוספת ספר</a>
+  <input placeholder="חפש ספר" [(ngModel)]="search"/>
+  <select [(ngModel)]="category">
+    <option value="all">All</option>
+    <option value="Programming">Programming</option>
+    <option value="Fiction">Fiction</option>
+    <option value="Math">Math</option>
+  </select>
+</div>
+
+<ul>
+  <li *ngFor="let book of books | categoryFilter:category | search:search:['title','author']">
+    <app-book-item [book]="book" (delete)="deleteBook(+$event)" (toggle)="toggle(+$event)"></app-book-item>
+  </li>
+</ul>

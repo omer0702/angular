@@ -1,0 +1,22 @@
+<h2>{{ isEdit ? 'עריכת משתמש' : 'הוספת משתמש' }}</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <label>שם:
+    <input formControlName="name"/>
+  </label>
+  <div *ngIf="form.controls.name.touched && form.controls.name.invalid" class="error">שם חובה (2 תווים מינימום)</div>
+
+  <label>אימייל:
+    <input formControlName="email"/>
+  </label>
+  <div *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">מייל תקין דרוש</div>
+
+  <label>תפקיד:
+    <select formControlName="role">
+      <option value="member">Member</option>
+      <option value="admin">Admin</option>
+    </select>
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">שמור</button>
+  <a routerLink="/users">ביטול</a>
+</form>
