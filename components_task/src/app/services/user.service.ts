@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { HttpClient } from '@angular/common/http';
+
 
 const STORAGE_KEY = 'lm_users_v1';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private usersSubject = new BehaviorSubject<User[]>(this.loadFromStorage());
+  private usersSubject = new BehaviorSubject<User[]>([]);
   users$ = this.usersSubject.asObservable();
 
-  constructor() {
-    const current = this.usersSubject.value;
-    if (!current || current.length === 0) {
-      const demo: User[] = [
-        { id: 1, name: 'Admin', email: 'admin@example.com', role: 'admin' },
-        { id: 2, name: 'Liora', email: 'liora@example.com', role: 'member' },
-      ];
-      this.setAll(demo);
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   private loadFromStorage(): User[] {
     try {
@@ -58,12 +51,31 @@ export class UserService {
     this.saveToStorage(users);
   }
 
-  delete(id: number) {
-    const users = this.getAll().filter(u => u.id !== id);
-    this.saveToStorage(users);
-  }
-
   private generateId(users: User[]): number {
     return users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
+  }
+
+  private apiUrl = 'http://localhost:3000/api/users';
+
+
+
+  loadUsers() {
+    this.http.get<User[]>(this.apiUrl)
+      .subscribe(users => this.usersSubject.next(users));
+  }
+
+  addUser(user: User) {
+    this.http.post<User>(this.apiUrl, user)
+      .subscribe(() => this.loadUsers());
+  }
+
+  updateUser(id: number, user: User) {
+    this.http.put(`${this.apiUrl}/${id}`, user)
+      .subscribe(() => this.loadUsers());
+  }
+
+  delete(id: number) {
+    this.http.delete(`${this.apiUrl}/${id}`)
+      .subscribe(() => this.loadUsers());
   }
 }

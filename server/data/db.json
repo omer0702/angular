@@ -1,0 +1,14 @@
+{
+  "users": [
+    { "id": 1, "name": "Omer", "email": "omer@mail.com" },
+    { "id": 2, "name": "Dana", "email": "smksm@gmail.com" }
+
+  ],
+  "permissions": [
+    { "id": 1, "name": "ADMIN" },
+    { "id": 2, "name": "VIEW_BOOKS" }
+  ],
+  "userPermissions": [
+    { "id": 1, "userId": 1, "permissionId": 1 }
+  ]
+}
